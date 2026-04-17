@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy, signal, ChangeDetectorRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -15,12 +16,17 @@ export class App implements OnInit, OnDestroy{
   public habilitaBtn: boolean = true;
   public minutoView: number = 0;
   public imagemIMC: String ="";
+  public texto: String = "";
   
   public listaImagens: string[] = [
+    "assets/images/sol.jpg",
+    "assets/images/ky.jpg",
+    "assets/images/may.jpg",
     "assets/images/chipp.jpg",
     "assets/images/faust.jpg",
     "assets/images/goldlewis.jpg",
     "assets/images/potemkin.jpg",
+    "assets/images/axl.jpg",
     // Adicione quantas imagens quiser aqui
   ];
 
@@ -51,7 +57,9 @@ export class App implements OnInit, OnDestroy{
     this.intervaloId = setInterval(() => {
       this.indexAtual = (this.indexAtual + 1) % this.listaImagens.length;
       this.imagemGGS = this.listaImagens[this.indexAtual];
-    }, 500);
+
+      this.cdr.detectChanges();
+    }, 100);
   }
 
   ngOnDestroy(): void {
