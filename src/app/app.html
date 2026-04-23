@@ -1,4 +1,4 @@
-<div class="container bg-light p-4 rounded w-75 mx-auto">
+<div class="container bg-black p-4 rounded w-75 mx-auto">
   <h1 class="text-primary text-center">{{titulo}}</h1>
   <p>{{minutoView}}</p>
   <br>
@@ -14,7 +14,32 @@
     {{texto}}
   </div>
   <hr>
-  <img [src]="imagemGGS" alt="imagemGGS">
+  <img [src]="imagemGGS" alt="imagemGGS" style="border-radius: 20%; width: 200px;">
+<br><hr><br>
+<body class="container">
+    <br>
+    <h1>Calculadora de IMC</h1>
+    <br>
+    <label for="peso">Peso (kg):  </label>
+    <input type="number" id="peso" [(ngModel)]="peso" step="0.1" placeholder="Ex: 80.5">
+
+    <br><br>
+
+    <label for="altura">Altura (m):  </label>
+    <input type="number" id="altura" [(ngModel)]="altura" step="0.01" placeholder="Ex: 1.80">
+
+    <br><br>
+
+    <button [disabled]="peso <= 0 || altura <= 0" 
+      (click)="calcularIMC()">
+      Calcular</button>
+    <br> <br>
+    <p *ngIf="resultado"><strong>Resultado: </strong> {{ resultado }}</p>
+    <br>
+
+</body>
+
 </div>
+
 
 <router-outlet />
